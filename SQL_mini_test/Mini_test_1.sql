@@ -34,7 +34,7 @@ BEGIN
 				WHERE table_name = LOWER(p_tablename)
 				AND column_name = LOWER(rec.fieldname)
 			) THEN
-				IF rec.Value LIKE '%\%%' ESCAPE '\' THEN
+				IF rec.Value LIKE "%\%%" ESCAPE '\' THEN
                     FOR v IN SELECT trim(val) AS v FROM regexp_split_to_table(rec.Value, ',') AS val LOOP
                         v_string := v_string || format('%I LIKE %L OR ', rec.FieldName, v.v);
                     END LOOP;
